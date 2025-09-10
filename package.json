@@ -1,0 +1,17 @@
+{
+  "name": "pebble-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "ts-node main.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@harmoniclabs/pebble": "file:../plu-ts/packages/pebble",
+    "memfs": "^4.38.3"
+  }
+}
