@@ -1,0 +1,37 @@
+struct HelloWorldDatum
+{
+    owner: bytes
+}
+
+contract HelloWorld
+{
+
+    // LSP corrections:
+    // spend -- blue
+    // InlineDatum -- green
+    // tx.signatories -- constant color
+
+    spend helloWorld(
+        inputIdx: int,
+        outputIdx: int,
+        message: bytes
+    )
+    {
+        const { tx, spendingRef } = context;
+
+        const { resolved: spendingInput, ref: inputSpendingRef } = tx.inputs[inputIdx];
+
+        assert inputSpendingRef === spendingRef;
+
+        const InlineDatum{
+            datum: {
+                owner
+            } as HelloWorldDatum
+        } = spendingInput.datum;
+
+        assert tx.signatories.includes(owner);
+
+        assert message == "Hello pebble";
+    }
+
+}

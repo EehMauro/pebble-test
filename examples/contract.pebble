@@ -1,0 +1,53 @@
+import { MyDatum } from "./MyDatum";
+import { MyAction } from "./MyAction";
+
+struct Datum {
+    owner: string,
+}
+
+struct Animal {
+    Dog {
+        name: string,
+        barksCount: int,
+    }
+    Cat {
+        name: string,
+        color: string,
+    }
+    Fish {
+        name: string,
+    }
+}
+
+contract MyContract {
+
+    param owner: PubKeyHash;
+    param txOutRef: TxOutRef;
+
+    spend sendToOwner()
+    {
+        const { tx, purpose } = context;
+
+        assert tx.outputs.length() == 1 else "only one output allowed";
+        assert tx.outputs[0].address.credential.hash === this.owner;
+    }
+
+    mint oneShotMint(quantity: int)
+    {
+        const { tx } = context;
+    }
+
+    certify doStuff()
+    {
+        let a = 0;
+        trace a;
+        fail a === 1;
+    }
+
+    withdraw withdrawFunds() {}
+
+    propose newConstitution() {}
+
+    vote alwaysNo() {}
+
+}

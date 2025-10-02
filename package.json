@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@harmoniclabs/pebble": "file:../plu-ts/packages/pebble",
+    "tree-sitter": "^0.25.0",
+		"tree-sitter-pebble": "file:../tree-sitter-pebble",
     "memfs": "^4.38.3"
   }
 }
